@@ -1,0 +1,70 @@
+# Docker Compose YML Config
+
+# This is the Development Local Config (Docker Compose v1.6.0 up)
+
+
+version: '2'
+services:
+    app:
+      extends:
+        file: docker-compose-common.yml
+        service: app
+      build: 
+        context: ./
+        args:
+          - ENV_TYPE=local
+      volumes:
+        - ./app/app:/app
+      # expose:
+      #   - "8000"
+      #   - "3000"
+      #   - "3001"
+      #   - "5555"
+      depends_on:
+        - postgres
+        - redis
+        - rabbitmq
+      links:
+        - postgres:postgres
+        - redis:redis
+        - rabbitmq:rabbitmq
+      env_file:
+        - ./env-local
+
+    redis:
+      extends:
+        file: docker-compose-common.yml
+        service: redis
+      ports:
+        - "6379"
+      env_file:
+        - ./env-local
+
+
+    postgres:
+      extends:
+        file: docker-compose-common.yml
+        service: postgres
+      expose:
+        - "5432" 
+      env_file:
+        - ./env-local
+
+    rabbitmq:
+      extends:
+        file: docker-compose-common.yml
+        service: rabbitmq
+      env_file:
+        - ./env-local
+
+    nginx:
+      extends:
+        file: docker-compose-common.yml
+        service: nginx
+      links:
+        - app:app
+      volumes_from:
+        - app
+      env_file:
+        - ./env-local
+

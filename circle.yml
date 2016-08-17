@@ -49,7 +49,7 @@ test:
       # need to save junit results inside app within docker container then copy to CIRCLE_TEST_REPORTS
       - docker-compose -f test.yml run app sh -c "mkdir -p circle-junit/django && py.test --junitxml=circle-junit/django/junit.xml apps/blog apps/search apps/accounts"
       - mkdir -p $CIRCLE_TEST_REPORTS/django
-      - mv /home/ubuntu/tetherbox/app/app/backend/circle-junit/django $CIRCLE_TEST_REPORTS/
+      - mv /home/ubuntu/codewheel-backend/app/app/circle-junit/django $CIRCLE_TEST_REPORTS/
 
 
 

@@ -12,6 +12,8 @@
 machine:
     services:
         - docker
+    pre:
+      - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
 
 # Generator install, scaffold in a new directory
 dependencies:
@@ -23,6 +25,7 @@ dependencies:
         - git clone https://github.com/docker-library/official-images.git ~/official-images
         - npm install -g npm
         - sudo apt-get install nodejs
+        - pip install docker-compose
         #- cd docker/app/app && npm install -g gulp bower && npm install && bower install
 
 

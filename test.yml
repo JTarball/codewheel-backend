@@ -2,9 +2,9 @@
 # This is the development style config
 app:
   restart: always
-  build: docker/app
+  build: .
   volumes:
-    - ./docker/app/app:/app
+    - ./app/app:/app
   ports:
     - "8000:8000"
     - "3000:3000"

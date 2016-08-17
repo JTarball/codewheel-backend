@@ -1,8 +1,8 @@
 -r base.txt
 tox
 ipython
-#Werkzeug
-#django_extensions
+Werkzeug
+django_extensions
 django_dynamic_fixture
 django-debug-toolbar
 django_nose

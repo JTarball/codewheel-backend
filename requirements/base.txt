@@ -33,6 +33,4 @@ django-filter
 
 
 eventlet
-Werkzeug
-django_extensions
 whitenoise

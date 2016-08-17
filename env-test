@@ -1,6 +1,6 @@
 # Want to be able to switch from dev to production 
 # 
-ENV_TYPE=local
+ENV_TYPE=test
 PYTHONUNBUFFERED=1
 PYTHONDONTWRITEBYTECODE=1
 # Verified 

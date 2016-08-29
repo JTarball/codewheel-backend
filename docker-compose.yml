@@ -10,7 +10,7 @@ services:
         file: config/docker-compose-common.yml
         service: app
       build: 
-        context: ./config
+        context: ./
         args:
           - ENV_TYPE=local
       volumes:

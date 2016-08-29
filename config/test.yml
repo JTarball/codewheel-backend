@@ -10,7 +10,7 @@ services:
         file: docker-compose-common.yml
         service: app
       build: 
-        context: ./
+        context: ../
         args:
           - ENV_TYPE=test
       links:

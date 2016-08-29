@@ -125,7 +125,7 @@ if [ "$1" = 'app' ]; then
 	echo "running django $ENV_TYPE server ... "
 	if [ "$ENV_TYPE" = 'local' ]; then
 		python $APP_DIR/manage.py runserver_plus 0.0.0.0:8000 --settings=project.settings.local
-	elif ["$ENV_TYPE" = 'test' ]; then
+	elif [ "$ENV_TYPE" = 'test' ]; then
 		python $APP_DIR/manage.py runserver_plus 0.0.0.0:8000 --settings=project.settings.test
 	elif [ "$ENV_TYPE" = 'prod' ]; then
 		python $APP_DIR/run.py

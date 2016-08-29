@@ -7,14 +7,12 @@ version: '2'
 services:
     app:
       extends:
-        file: config/docker-compose-common.yml
+        file: docker-compose-common.yml
         service: app
       build: 
-        context: ./config
+        context: ./
         args:
           - ENV_TYPE=test
-      volumes:
-        - ./app:/app
       links:
         - postgres:postgres
         - redis:redis
@@ -24,37 +22,37 @@ services:
         - redis
         - rabbitmq
       env_file:
-        - ./config/env-test
+        - ./env-test
 
     redis:
       extends:
-        file: config/docker-compose-common.yml
+        file: docker-compose-common.yml
         service: redis
       env_file:
-        - ./config/env-test
+        - ./env-test
 
     postgres:
       extends:
-        file: config/docker-compose-common.yml
+        file: docker-compose-common.yml
         service: postgres
       env_file:
-        - ./config/env-test
+        - ./env-test
 
     rabbitmq:
       extends:
-        file: config/docker-compose-common.yml
+        file: docker-compose-common.yml
         service: rabbitmq
       env_file:
-        - ./config/env-test
+        - ./env-test
 
     nginx:
       extends:
-        file: config/docker-compose-common.yml
+        file: docker-compose-common.yml
         service: nginx
       links:
         - app:app
       volumes_from:
         - app
       env_file:
-        - ./config/env-test
+        - ./env-test
 

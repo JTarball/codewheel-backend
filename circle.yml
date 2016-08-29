@@ -33,7 +33,7 @@ dependencies:
 # TODO: Deployment test (build and tag / run / destroy)
 test:
     pre:
-      - docker-compose -f test.yml up -d
+      #- docker-compose -f test.yml up -d
       # Docker Images: Copy all tests into official folder and combine configs
       #- sudo cp -r docker/app/tests/* ~/official-images/test/tests
       #- docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
@@ -50,7 +50,7 @@ test:
       #- sudo mv /home/ubuntu/tetherbox/docker/app/app/backend/_auto_circle-junit/django $CIRCLE_TEST_REPORTS/
       # APP_DIR START
       # need to save junit results inside app within docker container then copy to CIRCLE_TEST_REPORTS
-      - docker-compose -f test.yml run app sh -c "mkdir -p circle-junit/django && py.test --junitxml=circle-junit/django/junit.xml apps/blog apps/search apps/accounts"
+      - docker-compose -f config/test.yml run app sh -c "mkdir -p circle-junit/django && py.test --junitxml=circle-junit/django/junit.xml apps/blog apps/search apps/accounts"
       - mkdir -p $CIRCLE_TEST_REPORTS/django
       - mv /home/ubuntu/codewheel-backend/app/app/circle-junit/django $CIRCLE_TEST_REPORTS/
 

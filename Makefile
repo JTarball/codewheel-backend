@@ -7,4 +7,8 @@ stop:
 	docker stop $(docker ps -q)
 
 run:
-	bash -c 'docker-compose run --service-ports app'
+	bash -c 'pushd config; docker-compose run --service-ports app'
+
+compose:
+	echo  $?
+	bash -c 'pushd config; docker-compose '

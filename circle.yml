@@ -30,7 +30,7 @@ test:
     pre:
       #- docker-compose -f test.yml up -d
       # Docker Images: Copy all tests into official folder and combine configs
-      - sudo cp -r docker/app/tests/* ~/official-images/test/tests
+      - sudo cp -r tests/* ~/official-images/test/tests
       - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
       - docker-compose -f test.yml ps
       #- docker tag tetherbox_app "$APP_TEST_IMAGE"

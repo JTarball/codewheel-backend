@@ -35,7 +35,7 @@ test:
       - docker-compose -f config/test.yml ps
       #- docker tag tetherbox_app "$APP_TEST_IMAGE"
       #- docker push "$APP_TEST_IMAGE"
-      - ~/official-images/test/run.sh --config ~/official-images/test/config.sh --config docker/app/config.sh "$APP_TEST_IMAGE"
+      - ~/official-images/test/run.sh --config ~/official-images/test/config.sh --config docker/app/config.sh "config_app_1"
       # TODO: Deployment test
     override:
       # Django Tests for Blog, Search & Accounts (Need to manually add to the end of this command)

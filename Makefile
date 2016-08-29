@@ -10,5 +10,5 @@ run:
 	bash -c 'pushd config; docker-compose run --service-ports app'
 
 compose:
-	echo  $?
+	echo  $/
 	bash -c 'pushd config; docker-compose '

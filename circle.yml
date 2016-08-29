@@ -19,14 +19,12 @@ machine:
 dependencies:
     pre:
         # Remove services which will conflict
-        #- sudo killall redis-server 
         - sudo killall postgres
         - docker info
         - git clone https://github.com/docker-library/official-images.git ~/official-images
         - npm install -g npm
         - sudo apt-get install nodejs
         - pip install docker-compose
-        #- cd docker/app/app && npm install -g gulp bower && npm install && bower install
 
 
 # Run django tests, polymer tests
@@ -44,33 +42,9 @@ test:
       # TODO: Deployment test
     override:
       # Django Tests for Blog, Search & Accounts (Need to manually add to the end of this command)
-      # - gulp test:local
-      #- docker-compose -f test.yml run app sh -c "cd backend/ && mkdir -p _auto_circle-junit/django && py.test --junitxml=_auto_circle-junit/django/junit.xml apps/blog apps/search apps/accounts"
-      #- sudo mkdir -p $CIRCLE_TEST_REPORTS/django
-      #- sudo mv /home/ubuntu/tetherbox/docker/app/app/backend/_auto_circle-junit/django $CIRCLE_TEST_REPORTS/
-      # APP_DIR START
-      # need to save junit results inside app within docker container then copy to CIRCLE_TEST_REPORTS
+      # Need to save junit results inside app within docker container then copy to CIRCLE_TEST_REPORTS
       - docker-compose -f config/test.yml run app sh -c "mkdir -p circle-junit/django && py.test --junitxml=circle-junit/django/junit.xml apps/blog apps/search apps/accounts"
       - mkdir -p $CIRCLE_TEST_REPORTS/django
       - mv /home/ubuntu/codewheel-backend/app/app/circle-junit/django $CIRCLE_TEST_REPORTS/
 
 
-
-# deployment:
-#   production:
-#     branch: master
-#     commands:
-#       - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
-#       - docker build -t "caarlos0/getantibody:$CIRCLE_BUILD_NUM" .
-#       - docker push "caarlos0/getantibody:$CIRCLE_BUILD_NUM"
-#       - sed -i'' -e "s;%BUILD_NUM%;$CIRCLE_BUILD_NUM;g" ./.deploy/Dockerrun.aws.json
-#       - cd .deploy && eb init -r us-east-1 getantibody
-#       - cd .deploy && eb deploy -l $CIRCLE_BUILD_NUM
-
-#test:
-#    override:
-        #CIRCLE_TEST_REPORTS=/home/ubuntu/docker-django-polymer/docker/app/app/backend/_auto_circle-junit
-        # WORKAROUND: WAITING FOR FIX - CREATE LOG FILES in github
-        #- docker-compose run app sh -c 'python ci.py && REUSE_DB=0 python backend/manage.py test --settings=project.settings.test blog' 
-#         - sleep 10
-#         - curl --retry 10 --retry-delay 5 -vk https://localhost:9443

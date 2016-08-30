@@ -16,6 +16,7 @@
 
 machine:
     environment:
+      DOCKER_USER: "jtarball"
       APP_TEST_IMAGE: "$DOCKER_USER/docker-$CIRCLE_PROJECT_REPONAME-test:latest"
     services:
         - docker

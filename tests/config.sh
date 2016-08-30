@@ -26,4 +26,6 @@ imageTests+=(
 globalExcludeTests+=(
 	# single-binary images
 	[${APP_TEST_IMAGE}_utc]=1
+	[${APP_TEST_IMAGE}_gmt]=1
+	[${APP_TEST_IMAGE}_override-cmd]=1
 )

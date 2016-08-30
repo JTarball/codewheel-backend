@@ -6,6 +6,12 @@
 # Python specific configuration, see: https://circleci.com/docs/language-python
 #####
 
+## Set the following
+# DOCKER_USER
+# DOCKER_EMAIL
+# DOCKER_PASS
+
+# Uncomment docker push command to store test image in cloud (for CI)
 
 machine:
     services:
@@ -24,7 +30,7 @@ dependencies:
         - pip install docker-compose
 
 
-# Run django tests, polymer tests
+# Run django tests
 # TODO: Deployment test (build and tag / run / destroy)
 test:
     pre:
@@ -33,9 +39,9 @@ test:
       - sudo cp -r tests/* ~/official-images/test/tests
       - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
       - docker-compose -f config/test.yml ps
-      - docker tag tetherbox_app "$APP_TEST_IMAGE"
-      #- docker push "$APP_TEST_IMAGE"
-      - ~/official-images/test/run.sh --config ~/official-images/test/config.sh --config /app/tests/config.sh "config_app_1"
+      - docker tag config_app "$DOCKER_USER/docker-$CIRCLE_PROJECT_REPONAME-test:latest"
+      #- docker push "$DOCKER_USER/docker-$CIRCLE_PROJECT_REPONAME-test:latest"
+      - ~/official-images/test/run.sh --config ~/official-images/test/config.sh --config /app/tests/config.sh "$DOCKER_USER/docker-$CIRCLE_PROJECT_REPONAME-test:latest"
       # TODO: Deployment test
     override:
       # Django Tests for Blog, Search & Accounts (Need to manually add to the end of this command)

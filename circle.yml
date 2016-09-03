@@ -44,6 +44,8 @@ test:
       - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
       - docker-compose -f config/test.yml ps
       - docker tag config_app "$APP_TEST_IMAGE"
+      # Uncomment to push test images to docker hub 
+      # for staging
       #- docker push "$APP_TEST_IMAGE"
       - ~/official-images/test/run.sh --config ~/official-images/test/config.sh --config tests/config.sh "$APP_TEST_IMAGE"
       # TODO: Deployment test

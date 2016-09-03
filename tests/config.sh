@@ -18,8 +18,6 @@ testAlias+=(
 
 imageTests+=(
 	[$APP_TEST_IMAGE]='
-		python-imports
-		python-sqlite3
 	'
 )
 

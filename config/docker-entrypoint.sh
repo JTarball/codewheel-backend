@@ -75,7 +75,7 @@ if [ "$1" = 'app' ]; then
 		# sudo chown -R yeoman /app/log
 		# sudo chown -R yeoman /app/log/celerybeat.log
 		# sudo chown -R yeoman /app/log/celery.log
-		# sudo chown -R yeoman /app/log/project.log
+		sudo chown -R yeoman /app/log/project.log
 		# echo "set permissions for project.log, celery.log, celerybeat.log ..."
 
 		# tail -f /var/log/supervisord/supervisord.log &

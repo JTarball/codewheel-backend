@@ -13,20 +13,27 @@
 ## Useful Docker Commands
 `docker login`
   - you will need to login into docker hub (set up an account if you dont have one)
+
 `docker build -t "<IMAGE>" .`
   - this will build the Dockerfile in the current directory and tag it with "jtarball/docker-base:latest"
+
 `docker push "<IMAGE>"`
   - push to docker hub
+
 `docker-compose up`
  - this command will create and start containers
+
 `docker rm $(docker ps -a -q); docker rmi $(docker images -q);`
  - kill and remove all docker images and containers
+
 `docker rmi $(docker images -q --filter "dangling=true")`
  - Clean up un-tagged docker images
+
 `docker stop $(docker ps -a -q)`
  - Stop all docker processes
 
-### Command Docker Problem 
+
+### Command Docker Network Problem 
 Network timed out while trying to connect to https://index.docker.io/v1/repositories/library/debian/images. You may want to check you
 docker-machine restart default      # Restart the environment
 eval $(docker-machine env default)  # Refresh your environment settings
@@ -45,6 +52,8 @@ eval $(docker-machine env default)  # Refresh your environment settings
 
 
 ### How to deploy to Amazon Web Services
+Based off: [Deploying A Django to AWS Elastic Beanstalk]https://realpython.com/blog/python/deploying-a-django-app-to-aws-elastic-beanstalk/
+
 1. Get AWS Access Key, AWS Secret Access Key & AWS VPC IPD
 * [Get AWS Access Key & AWS Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html)
 
@@ -107,13 +116,10 @@ https://alexanderzeitler.com/articles/a-lap-around-aws-and-docker-machine/vpcsec
 So head over to the EC2 dashboard "Security Groups" section, select your "docker-machine" Security Group (which has been created when spinning up your machine) and make sure to allow some inbound traffic:
 
 
-static
-
-------
-
+static:
 cloudfront with options to limit to only static 
 
-8. Serving stsatic files with whitenoise and CDN Amazon Cloudfront 
+8. Serving static files with whitenoise and CDN Amazon Cloudfront 
 http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GettingStarted.html
 - docker storage cloudfront
 https://docs.docker.com/registry/storage-drivers/s3/
@@ -122,14 +128,9 @@ https://docs.docker.com/registry/storage-drivers/s3/
 
 
 
-# Run tests on app
+### Run tests on app
 py.test --ds=project.settings.test  <app dir>
 REUSE_DB=0 python manage.py test --settings=project.settings.test -s --with-queries blog
-
-
-# AWS EB
-https://realpython.com/blog/python/deploying-a-django-app-to-aws-elastic-beanstalk/
-
 
 ## Directory Structure / Files
 

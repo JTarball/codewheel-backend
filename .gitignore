@@ -101,6 +101,7 @@ _archive/
 
 # Django
 _auto_static/
+circle-junit/
 
 # logs
 *.log.*

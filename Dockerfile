@@ -1,6 +1,9 @@
 FROM jtarball/docker-base:latest
 MAINTAINER James Tarball <james.tarball@gmail.com>
 
+# need to set this again (permission problems otherwises)
+USER yeoman
+
 ARG ENV_TYPE=prod
 ENV APP_DIR /app
 
@@ -15,9 +18,12 @@ COPY config/requirements $BUILD_DIR/requirements
 RUN sudo pip install -r $BUILD_DIR/requirements/$ENV_TYPE.txt
 
 COPY ./app/ $APP_DIR
+RUN sudo chown yeoman:yeoman -R $APP_DIR
 
 COPY config/docker-entrypoint.sh /entrypoint.sh
 RUN sudo chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
+
+
 
 CMD ["app"]

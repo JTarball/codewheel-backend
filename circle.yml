@@ -39,7 +39,6 @@ dependencies:
 test:
     pre:
       # stop any previous container (stops already bind address failes)
-      - whoami
       - docker-compose -f config/test.yml stop
       - docker-compose -f config/test.yml up -d
       # Docker Images: Copy all tests into official folder and combine configs

@@ -13,6 +13,8 @@ services:
         context: ../
         args:
           - ENV_TYPE=test
+      volumes:
+        - ./app/circle-junit:/circle-junit
       links:
         - postgres:postgres
         - redis:redis

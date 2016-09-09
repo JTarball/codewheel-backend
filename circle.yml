@@ -53,7 +53,7 @@ test:
     override:
       # Django Tests for Blog, Search & Accounts (Need to manually add to the end of this command)
       # Need to save junit results inside app within docker container then copy to CIRCLE_TEST_REPORTS
-      - docker-compose -f config/test.yml run app sh -c "mkdir -p circle-junit/django && py.test --junitxml=circle-junit/django/junit.xml apps/blog apps/search apps/accounts"
+      - docker-compose -f config/test.yml run app sh -c "mkdir -p app/circle-junit/django && py.test --junitxml=app/circle-junit/django/junit.xml apps/blog apps/search apps/accounts"
       - mkdir -p $CIRCLE_TEST_REPORTS/django
       - mv app/circle-junit/django $CIRCLE_TEST_REPORTS/
 

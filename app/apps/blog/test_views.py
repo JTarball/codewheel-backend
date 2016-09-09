@@ -163,7 +163,7 @@ class TestPostListByYear(APITestCase):
         post = G(Post, author=self.user)
         serializer = PostSerializer(post)
         response = self.client.put(self.url, serializer.data, format='json')
-        self.assertEquals(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEquals(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_get_published_posts_by_year(self):
         """ Test published posts are retrieved. """
